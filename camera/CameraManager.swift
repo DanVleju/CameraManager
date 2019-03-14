@@ -1322,6 +1322,8 @@ open class CameraManager: NSObject, AVCaptureFileOutputRecordingDelegate, UIGest
                             self.deviceOrientation = .landscapeRight
                         } else if y > CGFloat(0.5) {
                             self.deviceOrientation = .portraitUpsideDown
+                        } else {
+                            self.deviceOrientation = .portrait
                         }
                         
                         self._orientationChanged()
