@@ -280,7 +280,16 @@ open class CameraManager: NSObject, AVCaptureFileOutputRecordingDelegate, UIGest
     fileprivate var coreMotionManager: CMMotionManager!
     
     /// Real device orientation from accelerometer
-    fileprivate var deviceOrientation: UIDeviceOrientation = .portrait
+    @objc dynamic open var rawDeviceOrientation: Int = UIDeviceOrientation.portrait.rawValue
+    fileprivate var deviceOrientation: UIDeviceOrientation = .portrait {
+        didSet {
+            DispatchQueue.main.async {
+                if self.rawDeviceOrientation != self.deviceOrientation.rawValue {
+                    self.rawDeviceOrientation = self.deviceOrientation.rawValue
+                }
+            }
+        }
+    }
     
     // MARK: - CameraManager
     
